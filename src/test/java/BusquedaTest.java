@@ -5,45 +5,80 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.HashSet;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BusquedaTest {
 
-    @ParameterizedTest
     @Test
-    void linealTest() {
-        int[] arreglo = {1,2,3,4,5,6,7};
+    void linealNormal() {
+        int[] arreglo = {1,2,3,4,5};
+        int wanted = 3;
+        assertTrue(Busqueda.lineal(arreglo, wanted));
+    }
+
+    @Test
+    void linealEmpty() {
+        int[] arreglo = {};
+        int wanted = 2;
+        assertFalse(Busqueda.lineal(arreglo, wanted));
+    }
+
+    @Test
+    void linealRepetido() {
+        int[] arreglo = {3,3,3,3,4};
+        int wanted = 3;
+        assertTrue(Busqueda.lineal(arreglo, wanted));
+    }
+
+    @Test
+    void linealNoEncontrado() {
+        int[] arreglo = {1,2,3,4,5};
+        int wanted = 10;
+        assertFalse(Busqueda.lineal(arreglo, wanted));
+    }
+
+    @Test
+    void hashNormal() {
+        int[] arreglo = {1,2,3,4,5};
+        int wanted = 3;
         HashSet<Integer> hashSet = new HashSet<>();
         for (int i = 0; i < arreglo.length; i++) {
-            hashSet.add( arreglo[i]);
+            hashSet.add(arreglo[i]);
         }
-        int wanted = 1; //Numero a buscar
-        Busqueda.lineal(arreglo, wanted);
-
+        assertTrue(Busqueda.lineal(arreglo, wanted));
     }
 
-
-    @ParameterizedTest
-    @CsvSource({"a,1", "b,2", "foo,3"})
-    void asd(String asd, int number) {
-
-        //assertTrue(Numbers.isOdd(number));
-    }
 
     @Test
-    void hashTest() {
-        int[] arreglo = {1,2,3,4,5,6,7};
+    void hashEmpty() {
+        int[] arreglo = {};
+        int wanted = 2;
         HashSet<Integer> hashSet = new HashSet<>();
         for (int i = 0; i < arreglo.length; i++) {
-            hashSet.add( arreglo[i]);
+            hashSet.add(arreglo[i]);
         }
-        int wanted = 1; //Numero a buscar
-        Busqueda.hash(hashSet, wanted);
-
+        assertFalse(Busqueda.lineal(arreglo, wanted));
     }
 
     @Test
-    void calcularTiempo(){
+    void hashRepetido() {
+        int[] arreglo = {3,3,3,3,4};
+        int wanted = 3;
+        HashSet<Integer> hashSet = new HashSet<>();
+        for (int i = 0; i < arreglo.length; i++) {
+            hashSet.add(arreglo[i]);
+        }
+        assertTrue(Busqueda.lineal(arreglo, wanted));
+    }
 
+    @Test
+    void hashNoEncontrado() {
+        int[] arreglo = {1,2,3,4,5};
+        int wanted = 10;
+        HashSet<Integer> hashSet = new HashSet<>();
+        for (int i = 0; i < arreglo.length; i++) {
+            hashSet.add(arreglo[i]);
+        }
+        assertFalse(Busqueda.lineal(arreglo, wanted));
     }
 }

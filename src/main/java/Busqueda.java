@@ -1,20 +1,24 @@
-import java.util.HashMap;
 import java.util.HashSet;
 
 public class Busqueda {
 
-    public static void lineal(int[] arreglo, int wanted){
+    public static boolean lineal(int[] arreglo, int wanted){
         for (int i = 0; i < arreglo.length; i++) {
             if (arreglo[i] == wanted){
-                break;
+                return true;
             }
         }
+        return false;
     }
 
-    public static void hash(HashSet<Integer> hashSet, int wanted){
-        hashSet.contains(wanted);
+    public static boolean hash(HashSet<Integer> hashSet, int wanted){
+        if (hashSet.contains(wanted)) {
+            return true;
+        }
+        return false;
     }
 
+    /*
     public static long[] calcularResultado(long n){
         //Recursiva
         long to_r = System.nanoTime();
@@ -28,4 +32,6 @@ public class Busqueda {
 
         return new long[]{(tf_l - to_l),(tf_r - to_r)};
     }
+
+     */
 }
