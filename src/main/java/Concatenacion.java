@@ -8,9 +8,9 @@ public class Concatenacion {
         return result;
     }
 
-    public static String joins(String[] strings){
+    public static String join(String[] strings){
         //StringBuilder
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder("");
         for (int i = 0; i < strings.length; i++) {
             sb.append(strings[i]);
         }
